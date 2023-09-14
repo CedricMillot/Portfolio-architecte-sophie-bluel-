@@ -58,3 +58,4 @@ function initialize() {
   if (!modal2) {
     console.error("Element 'myModal2' introuvable dans le DOM.");
   }
+  //
