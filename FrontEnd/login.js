@@ -1,6 +1,4 @@
 
-
-
 //valider  adresse e-mail
 function isValidEmail(email) {
   // Partern de l'adresse e-mail

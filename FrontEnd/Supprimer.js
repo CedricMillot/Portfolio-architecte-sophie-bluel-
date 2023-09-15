@@ -22,9 +22,11 @@ function supprimerImage(imageId, token) {
           // Vous pouvez mettre à jour l'affichage ou effectuer d'autres actions si nécessaire
           // Par exemple, vous pouvez supprimer l'élément du DOM
           const imageElement = document.getElementById(`image-${imageId}`);
-          if (imageElement) {
+          const imageElementModal = document.getElementById(`imagemodal-${imageId}`);
+          
             imageElement.remove();
-          }
+        
+            imageElementModal.remove();
         } else {
           // Gérer les erreurs de suppression d'image
           console.error('Erreur lors de la suppression de l\'image');
@@ -34,4 +36,3 @@ function supprimerImage(imageId, token) {
         console.error('Erreur lors de la suppression de l\'image :', error);
       });
   }
-  
