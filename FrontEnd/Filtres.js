@@ -22,6 +22,8 @@ if (token) {
   container.style.fontStyle = "normal"; // Style de police
   container.style.fontWeight = "400"; // Poids de police
   container.style.lineHeight = "30px"; // Hauteur de ligne égale à la hauteur du fond noir
+  container.style.cursor = "default";
+
 
   // Créer l'élément pour l'icône FontAwesome
   const icon = document.createElement("i");
@@ -67,7 +69,9 @@ function createStyledButton(texte) {
   bouton.style.fontWeight = "700"; 
   bouton.style.color = "white"; 
   bouton.style.backgroundColor = "#1d6154"; 
-  bouton.style.margin = "2em auto"; 
+  bouton.style.marginBottom = "20px";
+  bouton.style.marginLeft = "10px"; 
+  bouton.style.scrollMarginRight = "10px"; 
   bouton.style.width = "180px"; 
   bouton.style.textAlign = "center"; 
   bouton.style.borderRadius = "60px"; 
@@ -108,7 +112,7 @@ fetch("http://localhost:5678/api/categories")
       // Ajout d'un écouteur d'événements pour chaque bouton de filtre
       boutonFiltre.addEventListener("click", () => {
         const filtreSelectionne = boutonFiltre.getAttribute("data-filter");
-        const images = document.querySelectorAll("#Picture img");
+        const images = document.querySelectorAll("#Picture figure");
 
         // Affichage ou masquage des images en fonction du filtre sélectionné
         images.forEach((image) => {
@@ -130,7 +134,7 @@ fetch("http://localhost:5678/api/categories")
 
 // Écouteur d'événement pour le bouton "Tous"
 boutonTous.addEventListener("click", () => {
-  const images = document.querySelectorAll("#Picture img");
+  const images = document.querySelectorAll("#Picture figure");
   images.forEach((image) => {
     image.style.display = "block"; // Afficher toutes les images
   });

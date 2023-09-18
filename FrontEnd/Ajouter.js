@@ -4,9 +4,8 @@ const fileInput = document.getElementById("imageInput");
 const imagePreview = document.getElementById("imagePreview");
 const validerButton = document.getElementById("Valider-image");
 const pictureContainer = document.getElementById("Picture");
-const title = document.getElementById("title")
-const category = document.getElementById("category")
-
+const title = document.getElementById("title");
+const category = document.getElementById("category");
 
 // Styles pour les images dans la galerie d'images
 const commonImageStyles = {
@@ -26,6 +25,21 @@ function hidePreviewAndShowForm() {
     addButton.style.display = "block";
 }
 
+validerButton.addEventListener("click", () => {
+    const selectedFile = fileInput.files[0];
+    const bearerToken = localStorage.getItem("logintoken");
+    const enteredTitle = title.value; // Obtenir la valeur du champ "title"
+
+    // Vérifier si le champ "title" est vide
+    if (enteredTitle.trim() === "") {
+        // Afficher un message d'erreur
+        alert("Veuillez entrer un titre pour l'image.");
+    } else {
+        // Si le champ "title" n'est pas vide, envoyer l'image à l'API
+        sendImageToAPIAndDisplay(selectedFile, bearerToken);
+    }
+});
+
 // Fonction pour envoyer l'image à l'API et l'afficher dans la div "Picture"
 function sendImageToAPIAndDisplay(selectedFile, bearerToken) {
     if (selectedFile) {
@@ -43,12 +57,34 @@ function sendImageToAPIAndDisplay(selectedFile, bearerToken) {
         })
         .then((response) => response.json())
         .then((data) => {
+          
+            // Créer une balise "figure" pour chaque "work"
+            const figure = document.createElement("figure");
+            figure.id = `imagemodal-${data.id}`; // ID basé sur l'ID du work
+            figure.dataset.filter = data.categoryId; // Dataset basé sur la categoryId du work
+
+            // Créer une balise "img" avec le src et alt
             const imgElement = document.createElement("img");
             imgElement.src = data.imageUrl;
-            imgElement.alt = "Description de l'image"; // Vous pouvez ajouter une description appropriée ici
+            imgElement.alt = data.title; // Utilisez le titre du work comme alt
             Object.assign(imgElement.style, commonImageStyles);
-            pictureContainer.appendChild(imgElement);
+
+            // Créer une balise "figcaption" avec le texte du titre
+            const figcaption = document.createElement("figcaption");
+            figcaption.textContent = data.title; // Utilisez le titre du work comme contenu de la légende
+
+            // Ajouter l'image à la balise "figure"
+            figure.appendChild(imgElement);
+
+            // Ajouter la légende à la balise "figure"
+            figure.appendChild(figcaption);
+
+            // Ajouter la balise "figure" au div "Picture"
+            pictureContainer.appendChild(figure);
+
             console.log("Réponse de l'API :", data);
+
+           
         })
         .catch((error) => {
             console.error("Erreur lors de l'envoi de l'image à l'API :", error);
@@ -79,9 +115,20 @@ fileInput.addEventListener("change", () => {
     }
 });
 
-// Ajoutez un gestionnaire d'événements au clic sur le bouton "Valider"
-validerButton.addEventListener("click", () => {
+// Ajoutez un gestionnaire d'événements au clic sur le bouton "Ajouter image"
+addButton.addEventListener("click", () => {
+    fileInput.click();
+});
+
+// Ajoutez un gestionnaire d'événements pour détecter lorsque l'utilisateur a sélectionné un fichier
+fileInput.addEventListener("change", () => {
     const selectedFile = fileInput.files[0];
-    const bearerToken = localStorage.getItem("logintoken");
-    sendImageToAPIAndDisplay(selectedFile, bearerToken);
+
+    if (selectedFile) {
+        imagePreview.style.display = "block";
+        imagePreview.src = URL.createObjectURL(selectedFile);
+        const label = document.querySelector('label[for="imageInput"]');
+        label.style.display = "none";
+        addButton.style.display = "none";
+    }
 });

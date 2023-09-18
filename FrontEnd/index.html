@@ -18,9 +18,13 @@
     <script src="../FrontEnd/Ajouter.js" defer></script>
     <script src="../FrontEnd/Supprimer.js" defer></script>
     <script src="../FrontEnd/AcceuilAPI.js" defer></script>
+    <script src="../FrontEnd/login.js" defer></script>
+    <script src="../FrontEnd/logout.js" defer></script>
 
-    <script src="https://kit.fontawesome.com/85414b1231.js" crossorigin="anonymous"></script>
-
+    <script
+      src="https://kit.fontawesome.com/85414b1231.js"
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body>
     <header>
@@ -28,54 +32,86 @@
       <nav>
         <div id="myModal" class="modal">
           <div class="modal-content">
-              <h3 class="gallery-title">Galerie photo</h3>
-              <span id="closeModalBtn" class="close"><i class="fa-solid fa-xmark" style="color: #000000;"></i></span>
-              <div id="modalImageContainer"></div> 
-              <div class="line"></div> 
-              <div class="custom-button-container">
-                  <button class="custom-button" id="ouvrirModal">Ajouter une photo</button>
-              </div>
+            <h3 class="gallery-title">Galerie photo</h3>
+            <span id="closeModalBtn" class="close"
+              ><i class="fa-solid fa-xmark" style="color: #000000"></i
+            ></span>
+            <div id="modalImageContainer"></div>
+            <div class="line"></div>
+            <div class="custom-button-container">
+              <button class="custom-button" id="ouvrirModal">
+                Ajouter une photo
+              </button>
+            </div>
           </div>
-      </div>
-      <div id="myModal2" class="modal">
-        <div class="modal-content">
+        </div>
+        <div id="myModal2" class="modal">
+          <div class="modal-content">
             <h3 class="gallery-title">Ajout photo</h3>
-            <span id="retourModalPrecedent" class="arrow-back"><i class="fa-sharp fa-solid fa-arrow-left" style="color: #909192;"></i></span>
-            <span id="closeModalBtn2" class="close"><i class="fa-solid fa-xmark" style="color: #000000;"></i></span>
+            <span id="retourModalPrecedent" class="arrow-back"
+              ><i
+                class="fa-sharp fa-solid fa-arrow-left"
+                style="color: #909192"
+              ></i
+            ></span>
+            <span id="closeModalBtn2" class="close"
+              ><i class="fa-solid fa-xmark" style="color: #000000"></i
+            ></span>
             <div class="centered-content">
-                <div class="rectangle-background">
-                  <div class="rectangle" id="rectangleContainer">
-                    <label for="imageInput" style="cursor: pointer;">
-                        <i class="fa-regular fa-image" style="color:#CBD6DC; margin-top: 10px;"></i>
-                        <input type="file" id="imageInput" style="display: none;" accept="image/*">
-                    </label>
-                    <input type="file" id="fileInput" style="display: none;">
-                    <button class="custom-button-rectangle" id="Ajouter-image">+ Ajouter photo</button>
-                    <img id="imagePreview" src="#" alt="Aperçu de l'image" style="display: none;" class="image-height-170">
+              <div class="rectangle-background">
+                <div class="rectangle" id="rectangleContainer">
+                  <label for="imageInput" style="cursor: pointer">
+                    <i
+                      class="fa-regular fa-image"
+                      style="color: #cbd6dc; margin-top: 10px"
+                    ></i>
+                    <input
+                      type="file"
+                      id="imageInput"
+                      style="display: none"
+                      accept="image/*"
+                    />
+                  </label>
+                  <input type="file" id="fileInput" style="display: none" />
+                  <button class="custom-button-rectangle" id="Ajouter-image">
+                    + Ajouter photo
+                  </button>
+                  <img
+                    id="imagePreview"
+                    src="#"
+                    alt="Aperçu de l'image"
+                    style="display: none"
+                    class="image-height-170"
+                  />
                 </div>
                 <div class="form-block">
-                    <label for="title">Titre</label>
-                    <input type="text" name="title" id="title" />
-                    <label for="category">Catégorie</label>
-                    <select name="category" id="category">
-                        <option value="1">Objets</option>
-                        <option value="2">Appartements</option>
-                        <option value="3">Hôtels & restaurants</option>
-                    </select>
+                  <label for="title">Titre</label>
+                  <input type="text" name="title" id="title" />
+                  <label for="category">Catégorie</label>
+                  <select name="category" id="category">
+                    <option value="1">Objets</option>
+                    <option value="2">Appartements</option>
+                    <option value="3">Hôtels & restaurants</option>
+                  </select>
                 </div>
-                  <div class="line"></div> 
-                    <div class="custom-button-container">
-                        <button class="custom-button" id="Valider-image">Valider</button>
-                    </div>
+                <div class="line"></div>
+                <div class="custom-button-container">
+                  <button class="custom-button" id="Valider-image">
+                    Valider
+                  </button>
                 </div>
+              </div>
             </div>
+          </div>
         </div>
-    </div>
 
         <ul>
-          <li>projets</li>
-          <li>contact</li>
+          <li><a href="#projets">projets</a></li>
+          <li><a href="#contact">contact</a></li>
           <li><a href="login.html" id="loginLink">login</a></li>
+          <li>
+            <a onclick="logout()" href="/login.html" id="unlogLink">logout</a>
+          </li>
           <li>
             <img
               class="instagram"
@@ -111,16 +147,14 @@
         </article>
       </section>
       <section id="portfolio">
-        <h2>Mes Projets</h2>
+        <h2 div="projets">Mes Projets</h2>
         <div id="filters">
           <!-- Les boutons seront générés ici -->
         </div>
+
+        <div id="Picture">
+          <!-- Les images seront générées ici -->
         </div>
-        
-          <div id="Picture">
-            <!-- Les images seront générés ici -->
-          </div>
-    
       </section>
       <section id="contact">
         <h2>Contact</h2>

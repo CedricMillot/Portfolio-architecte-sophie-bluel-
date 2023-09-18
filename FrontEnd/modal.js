@@ -51,7 +51,7 @@ function afficherImagesAPI() {
   fetch('http://localhost:5678/api/works')
     .then((response) => response.json()) // Convertir la réponse en JSON
     .then((data) => { 
-      alert ("hello")
+   
       // Sélectionner la div de destination dans le modal
       const modalContainer = document.getElementById('modalImageContainer');
 

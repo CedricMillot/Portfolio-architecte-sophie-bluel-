@@ -9,33 +9,56 @@ function afficherImagesAPI() {
     fetch("http://localhost:5678/api/works")
       .then(response => response.json())
       .then(images => {
-        const gridContainer = document.createElement("div");
-        gridContainer.style.display = "grid";
-        gridContainer.style.gridTemplateColumns = "repeat(3, 1fr)";
-        gridContainer.style.gap = "10px";
-  
+
+
+    
+
         images.forEach(image => {
-          const imgElement = document.createElement("img");
-          imgElement.src = image.imageUrl;
-          imgElement.alt = image.title;
-          imgElement.id = `image-${image.id}`;
-          imgElement.setAttribute("data-filter", image.categoryId);
+                  // Créer une balise "figure" pour chaque "work"
+        const figure = document.createElement("figure");
+        figure.id = `image-${image.id}`; // ID basé sur l'ID du work
+        figure.dataset.filter = image.categoryId; // Dataset basé sur la categoryId du work
+
+        // Créer une balise "img" avec le src et alt
+        const imgElement = document.createElement("img");
+        imgElement.src = image.imageUrl;
+        imgElement.alt = image.title; // Utilisez le titre du work comme alt
+        Object.assign(imgElement.style, commonImageStyles);
+
+        // Créer une balise "figcaption" avec le texte du titre
+        const figcaption = document.createElement("figcaption");
+        figcaption.textContent = image.title; // Utilisez le titre du work comme contenu de la légende
+
+        // Ajouter l'image à la balise "figure"
+        figure.appendChild(imgElement);
+
+        // Ajouter la légende à la balise "figure"
+        figure.appendChild(figcaption);
+
+        // Ajouter la balise "figure" au div "Picture"
+        pictureContainer.appendChild(figure);
+      
+      });
   
-          imgElement.style.width = "310px";
-          imgElement.style.height = "413px";
-  
-          gridContainer.appendChild(imgElement);
-        });
-  
-        // Effacez le contenu précédent du conteneur d'images
-        while (imageContainer.firstChild) {
-          imageContainer.removeChild(imageContainer.firstChild);
-        }
-  
-        // Ajoutez le conteneur de grille mis à jour au div "Picture"
-        imageContainer.appendChild(gridContainer);
       })
       .catch(error => {
         console.error("Erreur lors de la récupération des images : " + error);
       });
   }
+
+
+
+document.addEventListener('DOMContentLoaded', function() {
+  // Placez votre code ici pour vous assurer que les éléments existent avant d'essayer d'y accéder.
+  const token = localStorage.getItem("logintoken");
+  const loginLink = document.getElementById('loginLink');
+  const unlogLink = document.getElementById('unlogLink');
+
+  if (token) {
+    loginLink.style.display = 'none';
+    unlogLink.style.display = 'block';
+  } else {
+    loginLink.style.display = 'block';
+    unlogLink.style.display = 'none';
+  }
+});
