@@ -40,7 +40,6 @@ validerButton.addEventListener("click", () => {
     }
 });
 
-// Fonction pour envoyer l'image à l'API et l'afficher dans la div "Picture"
 function sendImageToAPIAndDisplay(selectedFile, bearerToken) {
     if (selectedFile) {
         const formData = new FormData();
@@ -57,8 +56,7 @@ function sendImageToAPIAndDisplay(selectedFile, bearerToken) {
         })
         .then((response) => response.json())
         .then((data) => {
-          
-            // Créer une balise "figure" pour chaque "work"
+            // Créer une balise "figure" pour l'image nouvellement ajoutée
             const figure = document.createElement("figure");
             figure.id = `imagemodal-${data.id}`; // ID basé sur l'ID du work
             figure.dataset.filter = data.categoryId; // Dataset basé sur la categoryId du work
@@ -83,8 +81,6 @@ function sendImageToAPIAndDisplay(selectedFile, bearerToken) {
             pictureContainer.appendChild(figure);
 
             console.log("Réponse de l'API :", data);
-
-           
         })
         .catch((error) => {
             console.error("Erreur lors de l'envoi de l'image à l'API :", error);
@@ -97,10 +93,7 @@ function sendImageToAPIAndDisplay(selectedFile, bearerToken) {
     }
 }
 
-// Ajoutez un gestionnaire d'événements au clic sur le bouton "Ajouter image"
-addButton.addEventListener("click", () => {
-    fileInput.click();
-});
+
 
 // Ajoutez un gestionnaire d'événements pour détecter lorsque l'utilisateur a sélectionné un fichier
 fileInput.addEventListener("change", () => {
