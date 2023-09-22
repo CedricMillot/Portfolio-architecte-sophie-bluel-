@@ -166,8 +166,14 @@ label {
   margin-bottom: 20px; /* Ajoute de l'espace en bas de chaque label */
 }
 .form-block {
-  margin-top: 100px; /* Déplace le bloc vers le bas */
+  margin-bottom: 20px; /* Ajoute un espace entre les blocs de formulaire */
 }
+
+.form-block label {
+  display: block;
+  margin-top: 20px;
+}
+
 input[type="text"],
 input[type="password"] {
   background: #fff;
@@ -178,10 +184,10 @@ input[type="password"] {
   font-style: normal;
   font-weight: 500;
   line-height: normal;
-  border: none; /* Supprime la bordure par défaut */
-  padding: 10px; /* Ajoute un espace de remplissage pour un aspect plus propre */
+  border: none; 
+  padding: 10px; 
   width: 400px;
-  margin-bottom: 10px; /* Ajoute un espace en bas pour séparer les champs */
+  margin-bottom: 10px; 
 }
 select {
   background: #fff;
@@ -192,10 +198,10 @@ select {
   font-style: normal;
   font-weight: 500;
   line-height: normal;
-  border: none; /* Supprime la bordure par défaut */
-  padding: 10px; /* Ajoute un espace de remplissage pour un aspect plus propre */
+  border: none; 
+  padding: 10px; 
   width: 420px;
-  margin-bottom: 10px; /* Ajoute un espace en bas pour séparer les champs */
+  margin-bottom: 10px; 
 }
 .custom-button-rectangle {
   background-color: #cbd6dc;
@@ -206,7 +212,7 @@ select {
 }
 
 .fa-regular {
-  font-size: 76px; /* Taille de l'icône */
+  font-size: 76px; 
   margin-top: -10px;
 }
 .arrow-back {
@@ -215,17 +221,17 @@ select {
   right: 620px;
   font-size: 20px;
   cursor: pointer;
-  color: #e8f1f6; /* Couleur grise par défaut */
+  color: #e8f1f6; /
 }
 .gallery-title {
-  color: #000; /* Couleur du texte en noir */
-  text-align: center; /* Alignement du texte au centre */
-  font-family: "Work Sans"; /* Police de caractères */
-  font-size: 26px; /* Taille de police */
-  font-style: normal; /* Style de police */
-  font-weight: 400; /* Poids de police */
-  line-height: normal; /* Hauteur de ligne normale */
-  margin-top: 60px; /* Marge supérieure de 60px */
+  color: #000; 
+  text-align: center; 
+  font-family: "Work Sans";
+  font-size: 26px; 
+  font-style: normal; 
+  font-weight: 400; 
+  line-height: normal; 
+  margin-top: 60px; 
 }
 #modalImageContainer {
   display: flex;
@@ -233,10 +239,10 @@ select {
   margin-top: 30px;
 }
 .line {
-  width: 420px; /* Longueur de la ligne */
-  height: 1px; /* Épaisseur de la ligne */
-  background-color: #000; /* Couleur de la ligne (noir dans cet exemple) */
-  margin: 0 auto; /* Centrer horizontalement */
+  width: 420px; 
+  height: 1px; 
+  background-color: #000; 
+  margin: 0 auto; 
   position: absolute;
   bottom: 120px;
   left: 0;
@@ -247,29 +253,29 @@ select {
   flex-direction: column;
   align-items: center;
   position: absolute;
-  bottom: 50px; /* Marge de 50px par rapport au bas de la page */
-  left: 50%; /* Centrer horizontalement */
-  transform: translateX(-50%); /* Centrer horizontalement */
+  bottom: 50px; 
+  left: 50%; 
+  transform: translateX(-50%); 
 }
-/* Style pour le conteneur d'aperçu d'image */
+
 .image-preview {
   text-align: center;
 }
 
-/* Style pour l'image d'aperçu */
+
 #imagePreview {
   max-width: 100%;
-  max-height: 300px; /* Ajustez la hauteur maximale selon vos besoins */
+  max-height: 300px; 
 }
 
 .custom-button {
   border-radius: 60px;
   background: #1d6154;
-  color: white; /* Couleur du texte */
-  padding: 10px 20px; /* Ajustez la marge intérieure selon vos besoins */
-  border: none; /* Supprimer la bordure */
-  cursor: pointer; /* Curseur de type main pour indiquer qu'il s'agit d'un bouton cliquable */
-  position: relative; /* Ajoutez une position relative pour le bouton */
+  color: white; 
+  padding: 10px 20px; 
+  border: none; 
+  cursor: pointer; 
+  position: relative; 
   width: 200px;
 }
 ol,
@@ -300,7 +306,7 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
-/** end reset css**/
+
 body {
   max-width: 1140px;
   margin: auto;
@@ -421,11 +427,16 @@ input[type="submit"] {
 }
 
 #filters {
-  display: flex; /* Utilisez un conteneur flexible pour aligner les boutons horizontalement */
-  justify-content: center; /* Centrez horizontalement les éléments à l'intérieur du conteneur */
+  display: flex; 
+  justify-content: center; 
 }
 .hidden-title {
   display: none;
+}
+#titleError {
+  color: red;
+  display: none;
+  margin-left: 15px;
 }
 footer nav ul {
   display: flex;

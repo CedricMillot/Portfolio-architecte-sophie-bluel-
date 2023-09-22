@@ -5,25 +5,31 @@ function isValidEmail(email) {
   return emailPattern.test(email);
 }
 
-// valider le formulaire
 async function validateForm() {
   console.log("Validation du formulaire en cours...");
 
-  // Récupération de l'e-mail et du mot de passe 
+  // Récupération de l'e-mail et du mot de passe
   let email = document.getElementById("email").value;
   let password = document.getElementById("mdp").value;
+  let emailError = document.getElementById("emailError");
+  let passwordError = document.getElementById("passwordError");
 
   // Validation de l'e-mail
   if (!isValidEmail(email)) {
-    console.log("Adresse e-mail invalide");
-    alert("Veuillez entrer une adresse e-mail valide.");
-    return false; // Empêche l'envoi du formulaire si l'e-mail est invalide
+    emailError.style.display = "block"; // Afficher le message d'erreur pour l'e-mail
+    passwordError.style.display = "none"; // Masquer le message d'erreur pour le mot de passe
+    return false;
+  } else {
+    emailError.style.display = "none"; // Masquer le message d'erreur pour l'e-mail si l'e-mail est valide
   }
+
   // Validation du mot de passe
   if (password.length < 6) {
-    console.log("Mot de passe invalide");
-    alert("Le mot de passe doit contenir au moins 6 caractères.");
-    return false; // Empêche l'envoi du formulaire si le mot de passe est invalide
+    passwordError.style.display = "block"; // Afficher le message d'erreur pour le mot de passe
+    emailError.style.display = "none"; // Masquer le message d'erreur pour l'e-mail
+    return false;
+  } else {
+    passwordError.style.display = "none"; // Masquer le message d'erreur pour le mot de passe si le mot de passe est valide
   }
 
   console.log("Formulaire valide. Redirection en cours...");

@@ -62,8 +62,7 @@ if (token) {
  // Sélectionnez l'élément du titre "Mes Projets"
  const titleElement = document.getElementById("projets");
 
-  // Créez le bouton "Modifier"
-  // Créez le bouton "Modifier"
+  // Bouton modifier
   const modifyButton = document.createElement("button");
   modifyButton.style.backgroundColor = "#FFF"; // Fond blanc
   modifyButton.style.color = "#000"; // Texte noir

@@ -38,8 +38,18 @@
         <form>
           <label for="email">E-mail</label>
           <input type="text" name="E-mail" id="email" />
+          <span id="emailError" class="error"
+            >Veuillez entrer une adresse e-mail.</span
+          >
+          <!-- Message d'erreur pour l'e-mail -->
+
           <label for="mdp">Mot de passe</label>
           <input type="password" name="password" id="mdp" />
+          <span id="passwordError" class="error"
+            >Le mot de passe est requis.</span
+          >
+          <!-- Message d'erreur pour le mot de passe -->
+
           <input type="button" value="Se connecter" onclick="validateForm()" />
           <a href="forget-password">Mot de passe oublié</a>
         </form>
