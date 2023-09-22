@@ -1,13 +1,3 @@
-// Fonction pour retourner à la div "myModal" lorsque le span est cliqué
-function retournerAModal() {
-  const modal = document.getElementById("myModal");
-  if (modal) {
-    modal.scrollIntoView({ behavior: "smooth" }); // Pour faire défiler jusqu'à la div "myModal"
-  } else {
-    console.error("Div 'myModal' introuvable dans le DOM.");
-  }
-}
-
 // Fonction pour ouvrir le modal
 function ouvrirModal() {
   const modal = document.getElementById("myModal2");
@@ -17,49 +7,58 @@ function ouvrirModal() {
     console.error("Element 'myModal2' introuvable dans le DOM.");
   }
 }
-
-// Fonction pour fermer le modal
+// Fonction pour retourner  
+function retournerAModal() {
+  const modal = document.getElementById("myModal");
+  if (modal) {
+    modal.scrollIntoView({ behavior: "smooth" }); 
+  } else {
+    console.error("Div 'myModal' introuvable dans le DOM.");
+  }
+}
+// Fonction pour fermer 
 function fermerModal() {
-  const modal = document.getElementById("myModal2");
+  const modal = document.getElementById("myModal");
   if (modal) {
     modal.style.display = "none";
+    const modal2 = document.getElementById("myModal2");
+    if (modal2) {
+      modal2.style.display = "none";
+    }
   }
 }
 
 // Fonction d'initialisation
 function initialize() {
-  // ...
-
-  // Obtenez une référence au bouton "Ajouter une photo"
+  
+  // Ajouter une photo
   const boutonOuvrirModal = document.getElementById("ouvrirModal");
   const inputFile = document.getElementById("imageInput");
 
-  // Ajoutez un gestionnaire d'événement au bouton pour ouvrir le modal
+  // Ouvrir le modal
   boutonOuvrirModal.addEventListener("click", ouvrirModal);
 
-  // Ajoutez un gestionnaire d'événement au bouton de fermeture du modal
+  // Fermer le modal
   const closeModalBtn2 = document.getElementById("closeModalBtn2");
   closeModalBtn2.addEventListener("click", fermerModal);
 
-  // Obtenez une référence à l'élément de flèche de retour
+  //  Bouton flèche de retour
   const retourModalPrecedentBtn = document.getElementById("retourModalPrecedent");
   
-  // Ajoutez un gestionnaire d'événements pour le clic sur l'élément de flèche de retour
+  //  Gestionnaire d'événements flèche de retour
   retourModalPrecedentBtn.addEventListener("click", function() {
     const modal2 = document.getElementById("myModal2");
     if (modal2) {
-      modal2.style.display = "none"; // Ferme le Modal2 en masquant son affichage
+      modal2.style.display = "none"; // Masque le modal
     }
 
-    const modal = document.getElementById("myModal"); // Affiche le Modal1
-    if (modal) {
-      modal.style.display = "block";
-    }
+    const modal = document.getElementById("myModal"); // Affiche le Modal
+    modal.style.display = "block";
   });
 
-  // Appeler la fonction pour afficher les images de l'API au chargement de la page
+  // Fonction pour afficher les images de l'API
   afficherImagesAPI();
 }
 
-// Attendez que le DOM soit complètement chargé
+// Attendre que le DOM soit chargé
 document.addEventListener("DOMContentLoaded", initialize);

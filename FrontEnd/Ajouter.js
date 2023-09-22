@@ -1,19 +1,33 @@
-// Sélectionnez le bouton "Ajouter image" par son ID
+
+// Sélection de l'élément bouton "Ajouter une image"
 const addButton = document.getElementById("Ajouter-image");
+
+// Sélection de l'élément d'entrée de fichier 
 const fileInput = document.getElementById("imageInput");
+
+// Sélection de l'élément d'aperçu de l'image 
 const imagePreview = document.getElementById("imagePreview");
+
+// Sélection de l'élément bouton "Valider" 
 const validerButton = document.getElementById("Valider-image");
+
+// Sélection de l'élément conteneur d'images 
 const pictureContainer = document.getElementById("Picture");
+
+// Sélection de l'élément de titre 
 const title = document.getElementById("title");
+
+// Sélection de l'élément de catégorie 
 const category = document.getElementById("category");
 
-// Styles pour les images dans la galerie d'images
+// Styles galerie d'images
 const commonImageStyles = {
     width: "310px",
     height: "413px",
 };
-
+// Obtient toutes les images du conteneur du modal
 const modalImages = document.querySelectorAll("#modalImageContainer img");
+// Applique les styles communs à toutes les images
 modalImages.forEach((img) => Object.assign(img.style, commonImageStyles));
 
 // Fonction pour cacher l'aperçu et afficher le formulaire
@@ -27,8 +41,7 @@ function hidePreviewAndShowForm() {
 
 validerButton.addEventListener("click", () => {
     const selectedFile = fileInput.files[0];
-    const bearerToken = localStorage.getItem("logintoken");
-    const enteredTitle = title.value; // Obtenir la valeur du champ "title"
+    const enteredTitle = title.value; 
 
     // Vérifier si le champ "title" est vide
     if (enteredTitle.trim() === "") {
@@ -36,11 +49,12 @@ validerButton.addEventListener("click", () => {
         alert("Veuillez entrer un titre pour l'image.");
     } else {
         // Si le champ "title" n'est pas vide, envoyer l'image à l'API
-        sendImageToAPIAndDisplay(selectedFile, bearerToken);
+        sendImageToAPIAndDisplay(selectedFile);
     }
 });
 
-function sendImageToAPIAndDisplay(selectedFile, bearerToken) {
+function sendImageToAPIAndDisplay(selectedFile) {
+    const bearerToken = localStorage.getItem("logintoken");
     if (selectedFile) {
         const formData = new FormData();
         formData.append("image", selectedFile);
@@ -57,30 +71,30 @@ function sendImageToAPIAndDisplay(selectedFile, bearerToken) {
         .then((response) => response.json())
         .then((data) => {
             createImageCell(data)
-            // Créer une balise "figure" pour l'image nouvellement ajoutée
+            // Créer une balise "figure" 
             const figure = document.createElement("figure");
             figure.id = `image-${data.id}`; // ID basé sur l'ID du work
             figure.dataset.filter = data.categoryId; // Dataset basé sur la categoryId du work
-            figure.style.margin = "30px"; // Ajouter une marge à la balise "figure"
+            figure.style.margin = "30px"; // Ajoute une marge à la balise "figure"
     
             // Créer une balise "img" avec le src, alt et les styles de largeur et de hauteur
             const imgElement = document.createElement("img");
             imgElement.src = data.imageUrl;
-            imgElement.alt = data.title; // Utilisez le titre du work comme alt
-            imgElement.style.width = "310px"; // Largeur souhaitée
-            imgElement.style.height = "413px"; // Hauteur souhaitée
+            imgElement.alt = data.title; // Utilise le titre comme alt
+            imgElement.style.width = "310px"; 
+            imgElement.style.height = "413px"; 
     
             // Créer une balise "figcaption" avec le texte du titre
             const figcaption = document.createElement("figcaption");
-            figcaption.textContent = data.title; // Utilisez le titre du work comme contenu de la légende
+            figcaption.textContent = data.title; // Utilise le titre du work comme contenu de la légende
     
-            // Ajouter l'image à la balise "figure"
+            // Ajoute l'image à la balise "figure"
             figure.appendChild(imgElement);
     
-            // Ajouter la légende à la balise "figure"
+            // Ajoute la légende à la balise "figure"
             figure.appendChild(figcaption);
     
-            // Ajouter la balise "figure" au div "Picture"
+            // Ajoute la balise "figure" au div "Picture"
             pictureContainer.appendChild(figure);
     
             console.log("Réponse de l'API :", data);
@@ -95,7 +109,7 @@ function sendImageToAPIAndDisplay(selectedFile, bearerToken) {
 }
 
 
-// Ajoutez un gestionnaire d'événements pour détecter lorsque l'utilisateur a sélectionné un fichier
+// Ajoute un gestionnaire d'événements pour détecter lorsque l'utilisateur a sélectionné un fichier
 fileInput.addEventListener("change", () => {
     const selectedFile = fileInput.files[0];
 

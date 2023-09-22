@@ -1,66 +1,128 @@
-
-// Récupération du token depuis le stockage local (localStorage)
+// Récupération du token
 const token = localStorage.getItem("logintoken");
 
 if (token) {
-  // Seulement si un token est présent
+  // Si le token est présent
   const bodyElement = document.getElementsByTagName("body")[0];
 
-  // Créer le conteneur "Mode édition"
+  // Conteneur "Mode édition"
   const container = document.createElement("div");
   container.style.position = "absolute";
   container.style.top = "0";
   container.style.left = "50%";
   container.style.transform = "translateX(-50%)";
-  container.style.backgroundColor = "#000"; // Fond noir
-  container.style.color = "#FFF"; // Texte blanc
-  container.style.textAlign = "center"; // Alignement du texte
-  container.style.width = "100%"; // Largeur à 100%
-  container.style.height = "30px"; // Hauteur à 30 pixels
-  container.style.fontFamily = "Work Sans"; // Police de caractères
-  container.style.fontSize = "16px"; // Taille de police
-  container.style.fontStyle = "normal"; // Style de police
-  container.style.fontWeight = "400"; // Poids de police
-  container.style.lineHeight = "30px"; // Hauteur de ligne égale à la hauteur du fond noir
+  container.style.backgroundColor = "#000";
+  container.style.color = "#FFF";
+  container.style.textAlign = "center";
+  container.style.width = "100%";
+  container.style.height = "30px";
+  container.style.fontFamily = "Work Sans";
+  container.style.fontSize = "16px";
+  container.style.fontStyle = "normal";
+  container.style.fontWeight = "400";
+  container.style.lineHeight = "30px";
   container.style.cursor = "default";
 
-
-  // Créer l'élément pour l'icône FontAwesome
+  // Icône "Mode édition"
   const icon = document.createElement("i");
   icon.classList.add("fa", "fa-light", "fa-pen-to-square");
 
-  // Ajouter l'icône à container
+  // Ajout de l'icône au conteneur
   container.appendChild(icon);
 
-  // Ajouter le texte "Mode édition" après l'icône
+  // Texte "Mode édition"
   const modeEditionText = document.createTextNode("Mode édition");
   container.appendChild(modeEditionText);
 
-  // Ajouter le conteneur à la page
+  // Ajout du conteneur à la page
   bodyElement.appendChild(container);
 
-  // Gestionnaire d'événements pour ouvrir le modal
+  // Ouvre le modal
   container.addEventListener("click", function () {
-    // Sélectionnez le modal
+    // Sélectionne le modal
     const modal = document.getElementById("myModal");
 
-    // Affichez le modal en le rendant visible
+    // Affiche le modal
     modal.style.display = "block";
-    
+
+    // Sélection du bouton pour fermer le modal
     const closeModalBtn = document.getElementById("closeModalBtn");
 
-// Gestionnaire d'événements pour fermer le modal lorsque la croix est cliquée
-closeModalBtn.addEventListener("click", function () {
-    // Sélectionnez le modal
-    const modal = document.getElementById("myModal");
+    // Ferme le modal
+    closeModalBtn.addEventListener("click", function () {
+      // Sélection du modal
+      const modal = document.getElementById("myModal");
 
-    // Masquez le modal en le rendant invisible
-    modal.style.display = "none";
-});
+      // Masque le modal
+      modal.style.display = "none";
+    });
   });
+
+
+ // Sélectionnez l'élément du titre "Mes Projets"
+ const titleElement = document.getElementById("projets");
+
+  // Créez le bouton "Modifier"
+  // Créez le bouton "Modifier"
+  const modifyButton = document.createElement("button");
+  modifyButton.style.backgroundColor = "#FFF"; // Fond blanc
+  modifyButton.style.color = "#000"; // Texte noir
+  modifyButton.style.textAlign = "center";
+  modifyButton.style.fontFamily = "Work Sans";
+  modifyButton.style.fontSize = "14px";
+  modifyButton.style.fontStyle = "normal";
+  modifyButton.style.fontWeight = "400";
+  modifyButton.style.lineHeight = "normal";
+  modifyButton.style.border = "none"; // Suppression de la bordure
+  modifyButton.style.cursor = "pointer"; // Utilisez un curseur pointeur pour indiquer que c'est un bouton
+  modifyButton.style.marginLeft = "10px"; // Ajoute une marge à gauche du bouton
+
+  // Créez l'icône "fa-pen-to-square" en noir
+  const iconBlack = document.createElement("i");
+  iconBlack.classList.add("fas", "fa-pen-to-square", "black-icon"); 
+
+
+  // Ajoutez l'icône noire et le texte au bouton
+  modifyButton.appendChild(iconBlack);
+  modifyButton.appendChild(document.createTextNode(" Modifier"));
+
+  // Ajoutez le bouton "Modifier" à la suite du titre "Mes Projets" 
+  titleElement.appendChild(modifyButton);
+
+
+ // Ajoutez le bouton "Modifier" à la suite du titre "Mes Projets"
+ titleElement.appendChild(modifyButton);
+
+ // Copiez le code de gestion du "mode édition" et adaptez-le pour le bouton "Modifier"
+ modifyButton.addEventListener("click", function () {
+   // Sélectionnez le modal
+   const modal = document.getElementById("myModal");
+
+   // Affichez le modal
+   modal.style.display = "block";
+
+   // Sélectionnez le bouton pour fermer le modal
+   const closeModalBtn = document.getElementById("closeModalBtn");
+
+   // Fermez le modal lorsque le bouton de fermeture est cliqué
+   closeModalBtn.addEventListener("click", function () {
+     // Sélectionnez le modal
+     const modal = document.getElementById("myModal");
+
+     // Masquez le modal
+     modal.style.display = "none";
+   });
+ });
 }
 
-// Fonction pour créer un bouton stylisé
+// Création du "div" des filtres
+const filtersDiv = document.getElementById("filters");
+
+// Bouton "Tous" 
+const boutonTous = createStyledButton("Tous");
+boutonTous.setAttribute("data-filter", "Tous"); 
+
+// Bouton stylisé filtres
 function createStyledButton(texte) {
   var bouton = document.createElement("input");
   bouton.type = "button";
@@ -78,43 +140,47 @@ function createStyledButton(texte) {
   return bouton; 
 }
 
-// Sélection du div avec l'id "filters"
-const filtersDiv = document.getElementById("filters");
 
-// Création du bouton "Tous" 
-const boutonTous = createStyledButton("Tous");
-boutonTous.setAttribute("data-filter", "Tous"); 
-
-// Ajout du bouton "Tous" à la division des filtres
+// Ajout du bouton dans les filtres
 filtersDiv.appendChild(boutonTous); 
 
-// Appel à l'API pour récupérer les catégories
+// Mouse hover du filtres "Tous"
+boutonTous.addEventListener("mouseover", function () {
+  boutonTous.style.backgroundColor = "white";
+  boutonTous.style.color = "#1d6154";
+});
+
+boutonTous.addEventListener("mouseout", function () {
+  boutonTous.style.backgroundColor = "#1d6154";
+  boutonTous.style.color = "white";
+});
+
+// Appel à l'API pour les catégories
 fetch("http://localhost:5678/api/categories")
-  .then((response) => response.json()) // Conversion de la réponse en JSON
+  .then((response) => response.json()) 
   .then((categories) => {
-    // Tri des catégories dans l'ordre souhaité
+    // Tri des catégories 
     categories.sort((a, b) => {
-      // Ordre souhaité des catégories
+      // Ordre des catégories
       const ordre = ["Tous", "Objet", "Appartement", "Hotel & restaurent"];
-      // Index de chaque catégorie dans l'ordre spécifié
+      // Ordre spécifié des catégories
       const indexA = ordre.indexOf(a.name);
       const indexB = ordre.indexOf(b.name);
-      
+
       return indexA - indexB;
     });
 
-    // Parcours des catégories récupérées
     categories.forEach((categorie) => {
-      // Création d'un bouton de filtre pour chaque catégorie
+      // Création du bouton de filtre 
       const boutonFiltre = createStyledButton(categorie.name);
       boutonFiltre.setAttribute("data-filter", categorie.id); 
 
-      // Ajout d'un écouteur d'événements pour chaque bouton de filtre
+      // Ecouteur d'événements pour les bouton de filtre
       boutonFiltre.addEventListener("click", () => {
         const filtreSelectionne = boutonFiltre.getAttribute("data-filter");
         const images = document.querySelectorAll("#Picture figure");
 
-        // Affichage ou masquage des images en fonction du filtre sélectionné
+        // Affichage ou masquage les images en fonction du filtre 
         images.forEach((image) => {
           if (filtreSelectionne == image.getAttribute("data-filter")) {
             image.style.display = "block"; 
@@ -124,7 +190,18 @@ fetch("http://localhost:5678/api/categories")
         });
       });
 
-      // Ajout du bouton de filtre à la division des filtres
+      // Mouse hover des filtres "Objet", "Appartement", "Hotel & restaurent"
+      boutonFiltre.addEventListener("mouseover", function () {
+        boutonFiltre.style.backgroundColor = "white";
+        boutonFiltre.style.color = "#1d6154";
+      });
+
+      boutonFiltre.addEventListener("mouseout", function () {
+        boutonFiltre.style.backgroundColor = "#1d6154";
+        boutonFiltre.style.color = "white";
+      });
+
+      // Ajout des filtre "Objet", "Appartement", "Hotel & restaurent" à la "div"
       filtersDiv.appendChild(boutonFiltre); 
     });
   })
@@ -136,15 +213,6 @@ fetch("http://localhost:5678/api/categories")
 boutonTous.addEventListener("click", () => {
   const images = document.querySelectorAll("#Picture figure");
   images.forEach((image) => {
-    image.style.display = "block"; // Afficher toutes les images
+    image.style.display = "block"; 
   });
-
-  // Suppression de la classe "active" de tous les boutons de filtre
-  const boutonsFiltres = document.querySelectorAll("#filters input[type=button]");
-  boutonsFiltres.forEach((bouton) => {
-    bouton.classList.remove("active");
-  });
-
-  // Ajout de la classe "active" au bouton "Tous" pour le mettre en surbrillance
-  boutonTous.classList.add("active");
 });

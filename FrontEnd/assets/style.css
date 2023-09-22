@@ -419,6 +419,7 @@ input[type="submit"] {
   text-align: center;
   border-radius: 60px;
 }
+
 #filters {
   display: flex; /* Utilisez un conteneur flexible pour aligner les boutons horizontalement */
   justify-content: center; /* Centrez horizontalement les éléments à l'intérieur du conteneur */

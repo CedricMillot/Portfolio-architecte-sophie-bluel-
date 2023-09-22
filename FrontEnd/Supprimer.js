@@ -1,9 +1,6 @@
-const bearerToken = localStorage.getItem("logintoken")
-
-
-
 // Fonction pour effectuer la requête DELETE vers l'API et supprimer les images
-function supprimerImage(imageId, token) {
+function supprimerImage(imageId) {
+    const token = localStorage.getItem("logintoken")
     // Créez un objet d'en-têtes avec le jeton d'autorisation
     const headers = new Headers({
       'Authorization': `Bearer ${token}`, // Ajoutez le jeton d'autorisation dans les en-têtes
@@ -19,9 +16,9 @@ function supprimerImage(imageId, token) {
     fetch(`http://localhost:5678/api/works/${imageId}`, options)
       .then(response => {
         if (response.ok) {
-          // L'image a été supprimée avec succès
-          // Vous pouvez mettre à jour l'affichage ou effectuer d'autres actions si nécessaire
-          // Par exemple, vous pouvez supprimer l'élément du DOM
+          
+          
+          // Supprimer l'élément du DOM
           const imageElement = document.getElementById(`image-${imageId}`);
           const imageElementModal = document.getElementById(`imagemodal-${imageId}`);
           

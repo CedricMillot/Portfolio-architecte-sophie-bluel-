@@ -1,12 +1,13 @@
 afficherImagesAPI()
+
 function createImageCell(element) {
       
-  // Créez l'image container
+  // Création de l'image container
   const imageContainer = document.createElement('div');
   imageContainer.id=`imagemodal-${element.id}`
   imageContainer.style.textAlign = 'center';
 
-  // Créez l'image
+  // Création de l'image
   const image = document.createElement('img');
   image.src = element.imageUrl;
   image.alt = element.title;
@@ -14,7 +15,7 @@ function createImageCell(element) {
   image.style.height = '110px';
   image.style.margin = '10px';
 
-  // Créez l'icône de poubelle
+  // Création l'icône de poubelle
   const trashIcon = document.createElement('i');
   trashIcon.classList.add('fa', 'fa-solid', 'fa-trash-can');
   trashIcon.style.position = 'relative';
@@ -25,19 +26,20 @@ function createImageCell(element) {
   trashIcon.style.padding = '3px';
   trashIcon.style.borderRadius = '2px';
 
-  // Ajoutez un gestionnaire d'événement au clic sur l'icône de poubelle
+  //gestionnaire d'événement de l'icône de poubelle
   trashIcon.addEventListener('click', function () {
     const imageId = element.id;
-    supprimerImage(imageId, bearerToken);
+    supprimerImage(imageId);
   });
 
-  // Ajouter l'icône de poubelle à l'image container
+  // Ajoute l'icône à l'image container
   imageContainer.appendChild(image);
   imageContainer.appendChild(trashIcon);
 
+// Récupération de l'élément HTML avec l'ID
   const imagesContainer= document.getElementById("modal-images-container")
-console.log(imagesContainer)
-  // Ajouter l'image container à la cellule
+  console.log(imagesContainer)
+  // Ajout dans le container 
   imagesContainer.appendChild(imageContainer);
 
  
@@ -46,26 +48,31 @@ console.log(imagesContainer)
 
 // Fonction pour effectuer la requête vers l'API et afficher les images dans le modal
 function afficherImagesAPI() {
-  // Fonction pour créer une cellule avec une image et une icône de poubelle
- 
-  // Effectuer une requête Ajax vers l'API
+
+  // Requête Ajax vers l'API
   fetch('http://localhost:5678/api/works')
     .then((response) => response.json()) // Convertir la réponse en JSON
     .then((data) => { 
-   
-       // Sélectionner la div de destination dans le modal
-       const modalContainer = document.getElementById('modalImageContainer');
-       
+
+      // Conteneur du modal
+      const modalContainer = document.getElementById('modalImageContainer');
+
+      // Conteneur des images
       const imagesContainer = document.createElement('div');
-      imagesContainer.id="modal-images-container"
+      imagesContainer.id = 'modal-images-container';
+      imagesContainer.style.display = 'flex'; 
+      imagesContainer.style.flexWrap = 'wrap'; 
+      imagesContainer.style.flexDirection = 'row'; 
+      imagesContainer.style.marginLeft = '40px'; 
+      
+      
+      // Ajout du conteneur images au conteneur du modal
       modalContainer.appendChild(imagesContainer);
 
-      // Parcourir les éléments de l'API et ajouter les images à la table
+      // Ajout des images à la table
       data.forEach((element, index) => {
         createImageCell(element);
       });
-
-   
 
     })
     .catch((error) => {
